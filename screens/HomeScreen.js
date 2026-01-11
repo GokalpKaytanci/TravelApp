@@ -1,31 +1,39 @@
 import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 
-// navigation prop'u otomatik olarak React Navigation tarafından gönderilir
-function HomeScreen({ navigation }) {
+export default function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Home Screen</Text>
-      <Button
-        title="Go to Details"
-        // 'Details' ismi, App.js'de tanımlayacağımız ekran ismiyle AYNEN eşleşmelidir
-        onPress={() => navigation.navigate('Details')}
-      />
+      <Text style={styles.header}>Travel App</Text>
+      
+      {/* 1. Buton: Paris verisi gönderiyor */}
+      <View style={styles.buttonContainer}>
+        <Button
+          title="Go to Paris"
+          onPress={() => navigation.navigate('Details', { 
+            place: 'Paris', 
+            rating: 5 
+          })}
+        />
+      </View>
+
+      {/* 2. Buton: London verisi gönderiyor */}
+      <View style={styles.buttonContainer}>
+        <Button
+          title="Go to London"
+          onPress={() => navigation.navigate('Details', { 
+            place: 'London', 
+            rating: 4 
+          })}
+        />
+      </View>
+      
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifycondent: 'center', // Ortalamak için
-    marginTop: 50,
-  },
-  text: {
-    fontSize: 24,
-    marginBottom: 20,
-  },
+  container: { flex: 1, alignItems: 'center', justifyContent: 'center' },
+  header: { fontSize: 24, marginBottom: 20, fontWeight: 'bold' },
+  buttonContainer: { marginVertical: 10, width: 200 } // Butonlar arası boşluk
 });
-
-export default HomeScreen;
